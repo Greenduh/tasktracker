@@ -4,10 +4,10 @@ import java.time.LocalDateTime;
 
 public class Task {
 
-    private int id;
+    private final int id;
     private String description;
     private TaskStatus status;
-    private LocalDateTime createdAt;
+    private final LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
     public Task(String description) {
@@ -44,5 +44,9 @@ public class Task {
 
     public LocalDateTime getUpdatedAt() {
         return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }
