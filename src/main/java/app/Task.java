@@ -1,6 +1,7 @@
 package app;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Task {
 
@@ -48,5 +49,13 @@ public class Task {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    @Override
+    public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss a");
+        return "[" + id + "] \"" + description + "\" - " + status +
+                "\nCreated at: " + createdAt.format(formatter) +
+                "\nUpdated at: " + updatedAt.format(formatter);
     }
 }
