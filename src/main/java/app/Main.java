@@ -84,6 +84,22 @@ public class Main {
                 }
                 break;
             case "mark":
+                if (args.length < 2) {
+                    System.out.println("No task id specified.");
+                    return;
+                }
+                if (args.length < 3) {
+                    System.out.println("No mark specified.");
+                    return;
+                }
+
+                list.markTask(Integer.parseInt(args[1]), TaskStatus.valueOf(args[2]));
+                try {
+                    mapper.writerWithDefaultPrettyPrinter().writeValue(tasksFile, list);
+                    System.out.println("Task marked successfully.");
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
                 break;
             case "list":
                 for (Task t : list.getList()) {
