@@ -5,19 +5,21 @@ import java.time.format.DateTimeFormatter;
 
 public class Task {
 
-    private final int id;
+    private int id;
     private String description;
     private TaskStatus status;
-    private final LocalDateTime createdAt;
+    private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
     public Task(String description) {
-        this.id = 1; // placeholder
+        this.id = 2; // placeholder
         this.description = description;
         this.status = TaskStatus.TODO;
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
     }
+
+    public Task() {}
 
     public int getId() {
         return id;
