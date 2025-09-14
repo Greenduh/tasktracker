@@ -26,7 +26,6 @@ public class Main {
             }
         } catch (IOException e) {
             System.out.println("An error occurred.");
-            e.printStackTrace();
         }
 
         TaskList list;
@@ -71,6 +70,18 @@ public class Main {
                 }
                 break;
             case "delete":
+                if (args.length < 2) {
+                    System.out.println("No task id specified.");
+                    return;
+                }
+
+                list.deleteTask(Integer.parseInt(args[1]));
+                try {
+                    mapper.writerWithDefaultPrettyPrinter().writeValue(tasksFile, list);
+                    System.out.println("Task deleted successfully.");
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
                 break;
             case "mark":
                 break;
