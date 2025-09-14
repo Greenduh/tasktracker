@@ -29,11 +29,19 @@ public class Main {
             e.printStackTrace();
         }
 
+        TaskList list;
+        try {
+            list = mapper.readValue(tasksFile, TaskList.class);
+        } catch (IOException e) {
+            list = new TaskList();
+        }
+
         switch (args[0]) {
             case "add":
                 Task task = new Task(args[1]);
+                list.addTask(task);
                 try {
-                    mapper.writeValue(tasksFile, task);
+                    mapper.writerWithDefaultPrettyPrinter().writeValue(tasksFile, list);
                     System.out.printf("Task added successfully (ID: %d)\n", task.getId());
                 } catch (IOException e) {
                     throw new RuntimeException(e);
