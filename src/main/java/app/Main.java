@@ -54,6 +54,9 @@ public class Main {
             case "mark":
                 break;
             case "list":
+                for (Task t : list.getList()) {
+                    System.out.println(t + "\n");
+                }
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + args[0]);
