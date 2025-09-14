@@ -42,6 +42,7 @@ public class Main {
                     System.out.println("No task description specified.");
                     return;
                 }
+
                 Task task = new Task(args[1]);
                 list.addTask(task);
                 try {
@@ -52,6 +53,22 @@ public class Main {
                 }
                 break;
             case "update":
+                if (args.length < 2) {
+                    System.out.println("No task id specified.");
+                    return;
+                }
+                if (args.length < 3) {
+                    System.out.println("No task description specified.");
+                    return;
+                }
+
+                list.updateTask(Integer.parseInt(args[1]), args[2]);
+                try {
+                    mapper.writerWithDefaultPrettyPrinter().writeValue(tasksFile, list);
+                    System.out.println("Task updated successfully.");
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
                 break;
             case "delete":
                 break;
