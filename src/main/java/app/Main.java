@@ -9,7 +9,7 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) {
         // interrupt execution if no arguments are passed
-        if (args.length == 0) {
+        if (args.length < 1) {
             System.out.println("No operation specified.");
             return;
         }
@@ -38,6 +38,10 @@ public class Main {
 
         switch (args[0]) {
             case "add":
+                if (args.length < 2) {
+                    System.out.println("No task description specified.");
+                    return;
+                }
                 Task task = new Task(args[1]);
                 list.addTask(task);
                 try {
