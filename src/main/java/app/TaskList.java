@@ -19,6 +19,7 @@ public class TaskList {
 
     public void addTask(Task task) {
         list.add(task);
+        idCount++;
     }
 
     public boolean updateTask(int id, String description) {

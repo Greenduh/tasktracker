@@ -42,7 +42,7 @@ public class Main {
                     return;
                 }
 
-                Task task = new Task(args[1]);
+                Task task = new Task(args[1], list.getIdCount());
                 list.addTask(task);
                 try {
                     mapper.writerWithDefaultPrettyPrinter().writeValue(tasksFile, list);

@@ -11,8 +11,8 @@ public class Task {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    public Task(String description) {
-        this.id = 2; // placeholder
+    public Task(String description, int id) {
+        this.id = id;
         this.description = description;
         this.status = TaskStatus.TODO;
         this.createdAt = LocalDateTime.now();
