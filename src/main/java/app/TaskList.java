@@ -1,5 +1,6 @@
 package app;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +31,7 @@ public class TaskList {
         }
         int taskIndex = list.indexOf(task);
         task.setDescription(description);
+        task.setUpdatedAt(LocalDateTime.now());
         list.set(taskIndex, task);
         return true;
     }
@@ -52,6 +54,7 @@ public class TaskList {
         }
         int taskIndex = list.indexOf(task);
         task.setStatus(status);
+        task.setUpdatedAt(LocalDateTime.now());
         list.set(taskIndex, task);
         return true;
     }
