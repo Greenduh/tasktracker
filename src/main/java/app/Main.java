@@ -61,12 +61,13 @@ public class Main {
                     return;
                 }
 
-                list.updateTask(Integer.parseInt(args[1]), args[2]);
-                try {
-                    mapper.writerWithDefaultPrettyPrinter().writeValue(tasksFile, list);
-                    System.out.println("Task updated successfully.");
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
+                if (list.updateTask(Integer.parseInt(args[1]), args[2])) {
+                    try {
+                        mapper.writerWithDefaultPrettyPrinter().writeValue(tasksFile, list);
+                        System.out.println("Task updated successfully.");
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
                 break;
             case "delete":
@@ -75,12 +76,13 @@ public class Main {
                     return;
                 }
 
-                list.deleteTask(Integer.parseInt(args[1]));
-                try {
-                    mapper.writerWithDefaultPrettyPrinter().writeValue(tasksFile, list);
-                    System.out.println("Task deleted successfully.");
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
+                if (list.deleteTask(Integer.parseInt(args[1]))) {
+                    try {
+                        mapper.writerWithDefaultPrettyPrinter().writeValue(tasksFile, list);
+                        System.out.println("Task deleted successfully.");
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
                 break;
             case "mark":
@@ -93,15 +95,19 @@ public class Main {
                     return;
                 }
 
-                list.markTask(Integer.parseInt(args[1]), TaskStatus.valueOf(args[2]));
-                try {
-                    mapper.writerWithDefaultPrettyPrinter().writeValue(tasksFile, list);
-                    System.out.println("Task marked successfully.");
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
+                if (list.markTask(Integer.parseInt(args[1]), TaskStatus.valueOf(args[2]))) {
+                    try {
+                        mapper.writerWithDefaultPrettyPrinter().writeValue(tasksFile, list);
+                        System.out.println("Task marked successfully.");
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
                 break;
             case "list":
+                if (list.getList().isEmpty()) {
+                    System.out.println("Task list is empty.");
+                }
                 for (Task t : list.getList()) {
                     System.out.println(t + "\n");
                 }
